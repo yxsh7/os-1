@@ -1,0 +1,69 @@
+1. First In First Out (FIFO) –
+This is the simplest page replacement algorithm. In this algorithm, the operating system keeps track
+of all pages in the memory in a queue, the oldest page is in the front of the queue. When a page
+needs to be replaced page in the front of the queue is selected for removal
+
+Belady's Anomaly is a phenomenon in page replacement algorithms where increasing the number of available frames can result in an increase in the number of page faults. It's a counterintuitive situation where adding more physical memory can paradoxically lead to worse performance due to the specific behavior of the page replacement algorithm being used. It highlights that not all page replacement algorithms exhibit intuitive or optimal behavior.
+
+Optimal Page Replacement is a page replacement algorithm used in computer memory management. It works by replacing the page that will not be used for the longest time in the future. To do this, it predicts the future references to pages and selects the one that will be referenced farthest in the future for replacement. Optimal Page Replacement is considered the most efficient page replacement algorithm in terms of minimizing page faults. However, it's often impractical in real systems because it requires knowledge of future page references, which is typically not available.
+
+
+The Least Recently Used (LRU) page replacement algorithm is a method used in computer memory management. It selects the page that hasn't been used for the longest time for replacement when a page fault occurs. LRU keeps track of the order in which pages are accessed and selects the one that was accessed least recently for eviction. While LRU is effective in minimizing page faults, it can be challenging to implement efficiently in practice due to the need for maintaining and updating the access history of all pages. There are variations and approximations of LRU used in real systems to strike a balance between effectiveness and implementation complexity.
+
+
+A page fault is an event in operating systems when a program or process tries to access a page of memory that is not currently in the main physical memory (RAM). The operating system must then retrieve the required page from secondary storage (usually the hard drive) and load it into RAM, causing a delay in program execution.
+
+
+The FIFO (First-In-First-Out) page replacement algorithm is a simple and straightforward method used in computer memory management. It replaces the page in memory that has been there the longest when a page fault occurs. Here's the basic algorithm:
+
+Initialize a data structure, typically a queue, to keep track of the pages in memory.
+Initialize an empty set to keep track of the pages currently in memory.
+For each page request:
+Check if the requested page is already in memory (i.e., in the set of pages in memory).
+If the page is in memory, continue to the next page request.
+If the page is not in memory (a page fault occurs), do the following:
+If the memory is full (the number of pages in memory equals the maximum allowed):
+Remove the page at the front of the queue (the oldest page in memory).
+Remove that page from the set of pages in memory.
+Load the new page into memory.
+Add the new page to the set of pages in memory.
+Add the new page to the back of the queue (indicating it's the most recently added).
+Count the number of page faults that occurred during the program's execution.
+Finish the program.
+
+
+
+
+The Optimal Page Replacement algorithm, also known as the MIN (Minimum) algorithm, aims to minimize page faults by replacing the page that will not be used for the longest time in the future. Here's the basic algorithm:
+
+Initialize an empty set to keep track of the pages in memory.
+For each page request:
+Check if the requested page is already in memory (i.e., in the set of pages in memory).
+If the page is in memory, continue to the next page request.
+If the page is not in memory (a page fault occurs), do the following:
+If the memory is full (the number of pages in memory equals the maximum allowed):
+Find the page in memory that will not be used for the longest time in the future. This involves looking ahead in the page reference string to determine the page that is used farthest in the future.
+Remove the page found in the previous step from memory.
+Load the new page into memory.
+Add the new page to the set of pages in memory.
+Count the number of page faults that occurred during the program's execution.
+Finish the program.
+
+
+
+
+The Least Recently Used (LRU) page replacement algorithm replaces the page in memory that has not been used for the longest time when a page fault occurs. Here's the basic algorithm:
+
+Initialize a data structure to keep track of the pages in memory and their order of access (e.g., a queue, linked list, or stack).
+For each page request:
+Check if the requested page is already in memory (i.e., in the data structure).
+If the page is in memory, update its position in the data structure to indicate that it has been accessed most recently.
+If the page is not in memory (a page fault occurs), do the following:
+If the memory is full (the number of pages in memory equals the maximum allowed):
+Remove the page at the front of the data structure (the least recently used page).
+Load the new page into memory.
+Add the new page to the end of the data structure (indicating it's the most recently used).
+If the memory is not full, simply load the new page into memory and add it to the end of the data structure.
+Count the number of page faults that occurred during the program's execution.
+Finish the program
+

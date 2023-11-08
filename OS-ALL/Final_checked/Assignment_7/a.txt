@@ -1,0 +1,6 @@
+
+No. of lines are :1
+
+No. of words are :1
+
+No. of chars are :4

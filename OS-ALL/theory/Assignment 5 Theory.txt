@@ -1,0 +1,47 @@
+The Banker's Algorithm is a resource allocation and deadlock avoidance algorithm used in operating systems to manage resources in a way that prevents deadlock. It was developed by Edsger Dijkstra. The algorithm is primarily used in multi-process, multi-resource systems to ensure that processes do not enter a state where they are waiting for resources indefinitely due to resource allocation issues.Here's an overview of how the Banker's Algorithm works:Initialization:The system must initially know the total number of resources of each type and the maximum demand of each process. These are typically provided as input.Data Structures:The Banker's Algorithm maintains several data structures, including:Available: A vector representing the number of available resources of each type.Maximum: A matrix indicating the maximum number of resources that each process may need.Allocation: A matrix showing the resources currently allocated to each process.Need: A matrix that represents the remaining resources needed by each process.Request and Release:When a process requests additional resources, the algorithm checks if the request can be granted without leading to an unsafe state. If the request cannot be granted immediately, the process is made to wait.When a process releases resources, the released resources are returned to the "Available" pool, and other processes may then be able to acquire them.Safety Check:The Banker's Algorithm performs a safety check whenever a request is made. It simulates resource allocation for each process to check if the system will remain in a safe state (i.e., no deadlock) after granting the request. If the system remains safe, the request is granted; otherwise, the process must wait.Resource Allocation:If the safety check is successful, the requested resources are allocated to the process, and the "Available," "Allocation," and "Need" matrices are updated accordingly.It consists of two algorithms:
+
+A} Safety Algorithm
+The algorithm for finding out whether or not a system is in a safe state can be described as follows:
+1) Let Work and Finish be vectors of length ‘m’ and ‘n’ respectively.
+Initialize: Work = Available
+Finish[i] = false; for i=1, 2, 3, 4....n
+2) Find an i such that both
+a) Finish[i] = false
+b) Needi <= Work
+if no such i exists goto step (4)
+3) Work = Work + Allocation[i]
+Finish[i] = true
+goto step (2)
+4) if Finish [i] = true for all i
+then the system is in a safe state
+
+B} Resource-Request Algorithm
+Let Requesti be the request array for process Pi
+. Requesti[j] = k means process Pi wants k instances
+of resource type Rj
+. When a request for resources is made by process Pi
+, the following actions are
+taken:
+1) If Requesti <= Needi
+Goto step (2) ; otherwise, raise an error condition, since the process has exceeded its maximum
+claim.
+2) If Requesti <= Available
+Goto step (3); otherwise, Pi must wait, since the resources are not available.
+3) Have the system pretend to have allocated the requested resources to process Pi by modifying the
+state as
+follows:
+Available = Available – Requesti
+Allocationi = Allocationi + Requesti
+Needi = Needi– Requesti
+
+Deadlock is a situation that can occur in a multi-process or multi-threaded system where each process or thread is waiting for a resource held by another process or thread, and none of them can proceed. In other words, it's a state in which processes are stuck in a circular waiting condition, unable to complete their tasks and release the resources they've acquired.
+
+Four Necessary Conditions for Deadlock," which are:
+
+Mutual Exclusion: At least one resource must be held in a non-shareable mode. This means that only one process or thread can use the resource at a time.
+
+Hold and Wait: Processes must hold at least one resource and are waiting for additional resources that are currently held by other processes.
+
+No Preemption: Resources cannot be forcibly taken away from a process; they must be released voluntarily by the process holding them.
+
+Circular Wait: A circular chain of processes exists, where each process is waiting for a resource that's held by the next process in the chain.

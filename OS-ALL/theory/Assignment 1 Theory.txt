@@ -1,0 +1,67 @@
+Basic LINUX commands :-
+
+1)echo:
+The echo command is used to print text or variables to the terminal. 
+Ex : echo "Hello, World!"
+
+2)ls:
+The ls command is used to list the files and directories in a directory.
+Ex: ls
+
+
+3)read:
+The read command is used to read input from the user in a shell script.
+ex: read -p "Enter your name: " name
+echo "Hello, $name!"
+
+4)cat:
+The cat command is used to concatenate and display the contents of files.
+ex - cat file.txt
+
+
+5)touch:
+The touch command is used to create an empty file or update the timestamp of an existing file.
+ex - touch newfile.txt
+
+6)test:
+The test command is used in conditional expressions to evaluate conditions. It returns a status code indicating the result.
+Ex - if [ -f file.txt ]; then
+  echo "File exists"
+fi
+
+7)Loops:
+Loops in shell scripting allow you to repeat a set of commands. Common types include for, while, and until loops.
+Arithmetic Comparison:
+In shell scripting, you can perform arithmetic comparisons using operators like -eq (equal), -ne (not equal), -lt (less than), -gt (greater than), etc.
+Conditional Loops:
+Conditional loops, like if-else statements, allow you to execute different commands based on a condition
+Ex - if [ condition ]; then
+  # Commands if condition is true
+else
+  # Commands if condition is false
+fi
+
+8)grep:
+The grep command is used to search for specific patterns or text in files.
+Ex - grep "pattern" file.txt
+
+9)sed:
+The sed (stream editor) command is used for text processing. It can perform tasks like search-and-replace, insert, delete, and more
+Ex- sed 's/old_text/new_text/g' file.txt
+
+10)Sort Command:
+The sort command is used to sort lines of text in a file or input from a pipeline. It arranges lines alphabetically by default, but can also perform numerical, month, and other types of sorting.
+
+11)Chmod Command:
+The chmod command is used in Unix and Unix-like operating systems to change the permissions (read, write, execute) of files and directories.
+Ex - chmod options permissions file(s)
+
+Here's a simple shell script to sort a list of numbers:
+
+#!/bin/bash
+# Read a list of numbers from the user
+read -p "Enter a list of numbers (space-separated): " numbers
+# Use tr to convert spaces to newlines and sort the numbers
+sorted_numbers=$(echo $numbers | tr ' ' '\n' | sort -n)
+# Print the sorted numbers
+echo "Sorted numbers: $sorted_numbers"

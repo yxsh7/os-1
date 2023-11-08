@@ -1,0 +1,118 @@
+Disk scheduling is done by operating systems to schedule I/O requests arriving for the disk.
+Disk scheduling is also known as I/O scheduling.
+
+Seek Time:Seek time is the time taken to locate the disk arm to a specified track where the
+data is to be read or write. So the disk scheduling algorithm that gives minimum average
+seek time is better.
+
+Rotational Latency: Rotational Latency is the time taken by the desired sector of disk to
+rotate into a position so that it can access the read/write heads. So the disk scheduling
+algorithm that gives minimum rotational latency is better.
+
+Transfer Time: Transfer time is the time to transfer the data. It depends on the rotating
+speed of the disk and number of bytes to be transferred.
+
+Disk Access Time: Disk Access Time is:
+Disk Access Time = Seek Time +
+Rotational Latency +
+Transfer Time
+
+
+Disk Response Time: Response Time is the average of time spent by a request waiting to
+perform its I/O operation. Average Response time is the response time of the all requests.
+Variance Response Time is measure of how individual request are serviced with respect to
+average response time. So the disk scheduling algorithm that gives minimum variance
+response time is better.
+
+Advantages of Shortest Seek Time First (SSTF) –
+1. Better performance than FCFS scheduling algorithm.
+2. It provides better throughput.
+3. This algorithm is used in Batch Processing system where throughput is more important.
+4. It has less average response and waiting time.
+Disadvantages of Shortest Seek Time First (SSTF) –
+1. Starvation is possible for some requests as it favours easy to reach request and ignores the
+far away processes.
+2. Their is lack of predictability because of high variance of response time.
+3. Switching direction slows things down.
+
+Algorithm –
+1. Let Request array represents an array storing indexes of tracks that have been requested.
+‘head’ is the position of disk head.
+2. Find the positive distance of all tracks in the request array from head.
+3. Find a track from requested array which has not been accessed/serviced yet and has
+minimum distance from head.
+4. Increment the total seek count with this distance.
+5. Currently serviced track position now becomes the new head position.
+6. Go to step 2 until all tracks in request array have not been serviced.
+
+
+SCAN: In SCAN algorithm the disk arm moves into a particular direction and services the requests
+coming in its path and after reaching the end of disk, it reverses its direction and again services the
+request arriving in its path. So, this algorithm works as an elevator and hence also known as
+elevator algorithm. As a result, the requests at the midrange are serviced more and those arriving
+behind the disk arm will have to wait.
+
+Algorithm :
+
+Initialize the current position of the disk arm and the direction (usually initially set to "right" or "up" if the tracks are numbered from 0 to the maximum track number).
+Maintain a queue or list of pending I/O requests, along with the track or cylinder number of each request.
+Sort the pending requests by their track or cylinder numbers in the order they would be visited according to the current direction.
+While there are pending requests in the queue:
+a. Service the request closest to the current position in the current direction.
+b. Move the disk arm to the track or cylinder of the serviced request.
+c. Remove the serviced request from the queue.
+d. If there are no more pending requests in the current direction, change the direction:
+If the direction was "right" (or "up"), change it to "left" (or "down").
+If the direction was "left" (or "down"), change it to "right" (or "up").
+e. Continue servicing requests in the new direction until there are no more pending requests.
+Finish the disk scheduling process.
+
+
+Advantages:
+High throughput
+Low variance of response time
+Average response time
+Disadvantages:
+Long waiting time for requests for locations just visited by disk arm
+
+
+CLOOK: As LOOK is similar to SCAN algorithm, in similar way, CLOOK is similar to CSCAN
+disk scheduling algorithm. In CLOOK, the disk arm in spite of going to the end goes only to the last
+request to be serviced in front of the head and then from there goes to the other end’s last request.
+Thus, it also prevents the extra delay which occurred due to unnecessary traversal to the end of the
+disk.
+
+Algorithm
+
+Initialize the current position of the disk arm (usually at the beginning of the disk) and the direction (usually initially set to "right" or "up" if the tracks are numbered from 0 to the maximum track number).
+Maintain a queue or list of pending I/O requests, along with the track or cylinder number of each request.
+Sort the pending requests by their track or cylinder numbers in ascending order, irrespective of the current direction.
+While there are pending requests in the queue:
+a. Service the request closest to the current position in the current direction.
+b. Move the disk arm to the track or cylinder of the serviced request.
+c. Remove the serviced request from the queue.
+d. Continue servicing requests in the same direction, wrapping around to the beginning of the disk when the end is reached. Do not change direction as in the SCAN algorithm.
+e. Stop servicing requests in the current direction only when there are no more pending requests.
+Finish the disk scheduling process.
+
+
+
+
+LOOK and SCAN are both disk scheduling algorithms used to determine the order in which disk I/O requests are serviced. The key difference between them lies in their behavior when the disk arm reaches the end of the disk and needs to change direction:
+
+LOOK Scheduling:
+
+LOOK is a variant of the SCAN algorithm.
+When the disk arm reaches the end of the disk in LOOK, it doesn't immediately reverse direction. Instead, it "looks" ahead to check if there are any pending requests in the current direction.
+If there are pending requests in the current direction, LOOK continues servicing those requests before reversing direction.
+This behavior is more efficient if there are frequently occurring requests in the same direction, as it minimizes unnecessary back-and-forth movement of the disk arm.
+SCAN Scheduling:
+
+SCAN is a simpler algorithm that always scans the entire disk in one direction and then reverses direction when reaching the end.
+When the disk arm reaches the end in SCAN, it immediately reverses direction and continues servicing requests in the opposite direction.
+SCAN provides more predictable and uniform service to requests, making it suitable in situations where fairness and avoiding starvation are important.
+
+
+Seek Time = |Current Track - Requested Track| * Seek Time per Track
+Rotational Latency = (1 / Rotational Speed) / 2
+Transfer Time = Data Transfer Size / Data Transfer Rate

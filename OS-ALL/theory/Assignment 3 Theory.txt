@@ -1,0 +1,32 @@
+Shortest Job First (SJF) Preemptive Scheduling:
+SJF is a non-preemptive scheduling algorithm that selects the process with the shortest burst time to execute first. In the preemptive version, the algorithm can interrupt a running process if a shorter job arrives.Here's how SJF preemptive scheduling works:When a new process arrives, the scheduler checks if its burst time is shorter than the remaining burst time of the currently executing process. If it is, the current process is preempted and replaced by the new process.This algorithm aims to minimize the average waiting time, making it an optimal choice in theory.It can lead to a phenomenon called "starvation," where long jobs may never get a chance to execute if a steady stream of shorter jobs arrives.
+
+Formulas : SJF And ROUND ROBIN
+Waiting time(W)= Turnaround time - Burst time
+Turnaround time(T)= Completion time - Arrival time
+
+Round Robin Scheduling:
+Round Robin is a preemptive scheduling algorithm that allocates a fixed time quantum to each process in a cyclic order.Here's how Round Robin scheduling works:Each process is given a time quantum (e.g., 10 milliseconds) to execute. If a process doesn't complete within its time quantum, it's moved to the back of the queue, and the next process in line gets CPU time.This approach ensures that no process monopolizes the CPU for an extended period, making it fair for all processes.Round Robin is simple to implement and is often used in time-sharing systems where multiple users or processes share a single CPU.The choice of the time quantum can affect system performance. A short quantum provides good response time but increases context-switching overhead.
+
+Advantages of SJF Scheduling:
+Optimal Average Waiting Time: In a non-preemptive SJF scheduling, if all jobs are known in advance, it minimizes the average waiting time, making it an optimal scheduling algorithm in terms of waiting time.
+
+Shortest Job First: It prioritizes the execution of shorter jobs, which often leads to faster job completion and higher throughput.
+
+Minimizes Turnaround Time: SJF scheduling generally results in shorter turnaround times, which is the time taken from job submission to completion.
+
+Predictable Response Time: In non-preemptive SJF, jobs with shorter burst times receive quicker responses, providing predictable response times for smaller tasks.
+
+Disadvantages of SJF Scheduling:
+Starvation: One major disadvantage of SJF is the possibility of starvation. Longer jobs may keep waiting for short jobs to complete, leading to a situation where they might never get a chance to execute.
+Impracticality: In many real-world scenarios, it's challenging to know the exact burst time of a job in advance, which makes the application of non-preemptive SJF difficult.
+
+High Preemption Overhead: Preemptive SJF scheduling can lead to high overhead due to frequent context switches, especially if shorter jobs are continuously arriving.
+
+Complexity: Implementing SJF preemptive scheduling is more complex than some other scheduling algorithms due to the need for frequent preemption and decision-making.
+
+Priority Inversion: In preemptive SJF scheduling, priority inversion can occur when a low-priority job holds a resource needed by a high-priority job, causing delays.
+
+Dynamic Environment Challenges: In dynamic, real-time environments where job characteristics change, SJF may not be the best choice as it relies on accurate burst time estimates.ile a long quantum reduces context-switching but can lead to increased waiting times.
+
+The time quantum in RR is a parameter that determines how long each process can run before being preempted. It is set by the system and is typically a small, fixed value, such as 10 milliseconds. The choice of the time quantum can impact the trade-off between system responsiveness and context-switching overhead. A shorter time quantum provides quicker response times but results in more frequent context switches, while a longer time quantum reduces context-switching overhead but may lead to less responsiveness.
